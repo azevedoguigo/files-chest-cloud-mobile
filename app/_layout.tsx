@@ -1,14 +1,21 @@
 import { StatusBar } from 'expo-status-bar'
 import { View } from 'react-native'
-import NavigationBar from '../components/NavigationBar'
-import SignUp from './signUp'
+import { Stack } from 'expo-router/stack'
 
 export default function Layout() {
   return(
-    <View className='bg-zinc-900 h-screen w-screen justify-between'>
-      <SignUp />
-      <NavigationBar />
-      <StatusBar style='auto'/>
+    <View className='flex-1'>
+      <StatusBar style='auto' />
+      
+      <Stack
+        screenOptions={{
+          headerShown: false
+        }}
+      >
+        <Stack.Screen name='index' />
+        <Stack.Screen name='signIn' />
+        <Stack.Screen name='signUp' />
+      </Stack>
     </View>
   )
 }
