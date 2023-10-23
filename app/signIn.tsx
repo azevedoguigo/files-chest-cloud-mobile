@@ -1,7 +1,8 @@
-import { useState } from 'react';
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useState } from 'react'
+import { Text, TextInput, TouchableOpacity, View } from 'react-native'
 import * as SecureStore from 'expo-secure-store'
-import { api } from '../src/lib/api';
+import { api } from '../src/lib/api'
+import { Link } from 'expo-router'
 
 export default function SignIn() {
   const [email, setEmail] = useState('')
@@ -21,7 +22,7 @@ export default function SignIn() {
   }
 
   return(
-    <View className='justify-center items-center h-5/6'>
+    <View className='flex-1 bg-zinc-950 justify-center items-center h-5/6'>
       <View className=' items-center border border-zinc-600 w-11/12 p-2 rounded-md'>
         <Text className='text-zinc-50 text-lg font-bold mb-4'>
           SignIn
@@ -41,15 +42,17 @@ export default function SignIn() {
           placeholder='Your Password'
         />
 
-        <TouchableOpacity
-          activeOpacity={0.8}
-          className='items-center justify-center py-2 bg-green-500 rounded-md w-11/12 mt-2'
-          onPress={handleLogin}
-        >
-          <Text className='text-zinc-50 font-bold'>
-            Let's go!
-          </Text>
-        </TouchableOpacity>
+        <Link href='/' asChild>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={handleLogin}
+            className='items-center bg-green-500 p-2 w-11/12 mt-2 rounded-md'
+          >
+            <Text className='text-zinc-50 font-bold'>
+              Let's go!
+            </Text>
+          </TouchableOpacity>
+        </Link>
       </View>
     </View>
   )
