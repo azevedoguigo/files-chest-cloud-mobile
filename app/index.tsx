@@ -58,7 +58,7 @@ export default function Index() {
 
       const downloadURL = response.data.download_url
 
-      const perm = await MediaLibary.requestPermissionsAsync()
+      await MediaLibary.requestPermissionsAsync()
 
       const {uri: localUri} = await FileSystem.downloadAsync(downloadURL, FileSystem.documentDirectory + key)
 
