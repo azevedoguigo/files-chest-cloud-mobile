@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react'
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import { 
+  ScrollView, 
+  Text, 
+  TouchableOpacity, 
+  View
+} from 'react-native'
 import { router } from 'expo-router'
 import { api } from '../src/lib/api'
 import { Download, File, FileMinus } from 'lucide-react-native'
@@ -77,6 +82,26 @@ export default function Index() {
     }
   }
 
+  async function deleteFile(key: String) {
+    try {
+      const token = await SecureStore.getItemAsync('token')
+
+      await api.delete('/cloud/delete-file', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
+        params: {
+          'filename': key
+        }
+      })
+
+      alert('File deleted successfully!')
+      await loadFilesList()
+    } catch(error) {
+      alert('Failed to delete the file!')
+    }
+  }
+
   return (
     <View className='flex-1 justify-between items-center bg-zinc-900 h-full'>
       <ScrollView 
@@ -124,6 +149,7 @@ export default function Index() {
 
                   <TouchableOpacity
                     className='flex-row items-center justify-center'
+                    onPress={() => deleteFile(file.key)}
                   >
                     <FileMinus color='#71717a'/>
                     <Text className='text-zinc-50 font-bold ml-2'
