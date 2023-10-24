@@ -15,6 +15,7 @@ export default function Layout() {
         <Stack.Screen name='index' />
         <Stack.Screen name='signIn' />
         <Stack.Screen name='signUp' />
+        <Stack.Screen name='upload' />
       </Stack>
     </View>
   )
