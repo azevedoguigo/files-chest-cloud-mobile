@@ -10,7 +10,9 @@ export default function NavigationBar() {
         <Link href='/'>
           <Files color='#71717a' size={38} />
         </Link>
-        <UploadCloud color='#71717a' size={38} />
+        <Link href='/upload'>
+          <UploadCloud color='#71717a' size={38} />
+        </Link>
         <User color='#71717a' size={38} />
         <Settings color='#71717a' size={38} />
     </View>
